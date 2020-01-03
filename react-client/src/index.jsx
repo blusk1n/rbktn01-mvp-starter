@@ -1,35 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
-import List from './components/List.jsx';
+import Form from './components/form.jsx';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { 
-      items: []
+    this.state = {
     }
   }
 
-  componentDidMount() {
-    $.ajax({
-      url: '/items', 
-      success: (data) => {
-        this.setState({
-          items: data
-        })
-      },
-      error: (err) => {
-        console.log('err', err);
-      }
-    });
-  }
-
   render () {
-    return (<div>
-      <h1>Item List</h1>
-      <List items={this.state.items}/>
-    </div>)
+    return (
+    <div>
+        <h1>Welcome To CryptoPsycho</h1>
+        <Form/>
+    </div>
+    )
   }
 }
 
