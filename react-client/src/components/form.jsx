@@ -4,13 +4,18 @@ class Form extends React.Component{
   constructor(props){
     super(props)
     this.state ={
+      //for the crypte
       input:"",
       crypted:"",
+      //for the decrypt
+
     }
     this.changeText=this.changeText.bind(this)
     this.submitForm=this.submitForm.bind(this)
-    this.decryptText=this.decryptText.bind(this)
-    this.submitdecrypt=this.submitdecrypt.bind(this)
+
+
+    // this.decryptText=this.decryptText.bind(this)
+    // this.submitdecrypt=this.submitdecrypt.bind(this)
   }
 
   changeText(e){
@@ -18,26 +23,15 @@ class Form extends React.Component{
       input: e.target.value
     })
   }
-  decryptText(e){
-    this.setState({
-      crypted: e.target.value
-    })
-  }
-  submitdecrypt(e){
-    e.preventDefault()
-    let data = this.state.crypted
-    data !== "" && axios.post("/crypted",{data}).then(response=>console.log(response))
-    this.setState({crypted:""})
-    axios.get("/crypted").then(response=>{this.setState({input:response.data})})
-  }
+
 
   //for the first text area to encrypt text
   submitForm(e){
     e.preventDefault()
     let data = this.state.input
-    data !== "" && axios.post("/input",{data}).then(response=>console.log(response))
-    this.setState({input:""})
-    axios.get("/input").then(response=>{this.setState({crypted:response.data})})
+    data !== "" && axios.post("/input",{data}).then(response=>this.setState({crypted:response.data}))
+
+
   }
   render(){
     return(
@@ -46,7 +40,7 @@ class Form extends React.Component{
         <br/>
         <button onClick={this.submitForm}>Crypt your text</button>
         <br/>
-        <textarea rows="4" onChange={this.decryptText} cols="50" value={this.state.crypted} placeholder="your encrypted data"/>
+        <textarea rows="4" cols="50" value={this.state.crypted} placeholder="your encrypted data"/>
       </form>
 
     )

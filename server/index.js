@@ -35,17 +35,32 @@ app.post("/input",(req,res)=>{
   mystr += mykey.final('hex');
 
   //now i want to send data to the client
-  app.get("/input",(req,res)=>{
-    res.send(mystr)
-  })
+  console.log(mystr,"///")
+
 
   //this is to save in data base
   let myDataBase = new items.Item({data:myData ,cryptedData:mystr})
   myDataBase.save(function (err ) {
     if (err) return console.error(err);
   })
+  res.json(mystr)
 
 })
+
+// app.post("/crypted",(req,res)=>{
+//   //getting the request from the client
+//   let myData = req.body.data
+//   console.log(myData)
+//   //crypt the request
+//   var mykey = crypto.createDecipher('aes-128-cbc', 'mydata');
+//   var mystr = mykey.update(myData, 'hex', 'utf8')
+//   mystr += mykey.final('utf8');
+
+//   //now i want to send data to the client
+//   app.get("/crypted",(req,res)=>{
+//     res.send(mystr)
+//   })
+// })
 
 app.listen(3000, function() {
   console.log('listening on port 3000!');
