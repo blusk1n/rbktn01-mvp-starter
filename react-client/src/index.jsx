@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import Form from './components/form.jsx';
+import Form2 from './components/form2.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -13,8 +14,11 @@ class App extends React.Component {
   render () {
     return (
     <div>
-        <h1>Welcome To CryptoPsycho</h1>
+        <h1 className="title">Hex && UTF-8</h1>
         <Form/>
+        <h1 className="title">Binary && UTF-8</h1>
+        <Form2/>
+
     </div>
     )
   }
